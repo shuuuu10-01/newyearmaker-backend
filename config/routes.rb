@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post "cards/:id/destroy" => "cards#destroy"
 
       get "twitter/:source_id/:target_id/friendships" => "twitter_api#follow"
+      get "twitter/:source_id/:target_screen_name/check" => "twitter_api#check"
     end
   end
 end
