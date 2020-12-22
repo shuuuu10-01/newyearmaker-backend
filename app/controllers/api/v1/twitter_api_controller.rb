@@ -5,8 +5,8 @@ class Api::V1::TwitterApiController < ApplicationController
       header = { Authorization: "Bearer #{ENV.fetch("TWITTER_BEARER_TOKEN")}"}
       client = HTTPClient.new
       response = client.get(url, header: header)
-
-      render json: JSON.parse(response.body.relationship.sourse.followed_by)
+      
+      render json: JSON.parse(response.body)
     end
 
     def check
