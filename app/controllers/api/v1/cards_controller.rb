@@ -1,5 +1,6 @@
 class Api::V1::CardsController < ApplicationController
   before_action :set_card, only: [:show,:edit,:update,:destroy]
+  rescue_from StandardError,with: :error500
 
   def index
     cards = Card.order(created_at: :desc)
@@ -42,5 +43,9 @@ class Api::V1::CardsController < ApplicationController
 
   def card_params #ここでPOSTされる中身を選択
     params.require(:card).permit(:uid,:text,:gif,:share)
+  end
+
+  def error500(error)
+    render json: {errors: [{code: 'E9999',message: 'カードが見つかりませんでした'}]}, status: :internal_server_error
   end
 end
