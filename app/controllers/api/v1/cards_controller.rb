@@ -38,7 +38,7 @@ class Api::V1::CardsController < ApplicationController
   end
   private
   def set_card
-    @card = Card.find(params[:id])
+    @card = Card.find_by(public_uid: params[:id])
   end
 
   def card_params #ここでPOSTされる中身を選択

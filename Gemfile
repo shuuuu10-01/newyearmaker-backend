@@ -49,3 +49,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'dotenv-rails'
 # 外部APIを利用するのに必要
 gem 'httpclient'
+
+#idをランダムな文字列にする
+gem 'public_uid'
