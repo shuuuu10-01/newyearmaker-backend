@@ -15,6 +15,6 @@ class Api::V1::RecievesController < ApplicationController
 
   private
   def recieve_params #ここでPOSTされる中身を選択
-    params.require(:recieve).permit(:uid,:public_uid,:display_name)
+    params.permit(:uid,:public_uid,:display_name)
   end
 end
