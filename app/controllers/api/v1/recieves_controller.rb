@@ -1,8 +1,12 @@
 class Api::V1::RecievesController < ApplicationController
   def add
     recieve = Recieve.new(recieve_params)
-    if recieve.save
+    if Recieve.find_by(uid: recieve.uid,public_uid: recieve.public_uid)===nil #重複を防ぐ
+      if recieve.save
       render json: { status: 'SUCCESS', data: recieve }
+      else
+      render json: { status: 'ERROR', data: card.errors }
+      end
     else
       render json: { status: 'ERROR', data: card.errors }
     end
