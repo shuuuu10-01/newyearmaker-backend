@@ -1,5 +1,4 @@
 class Api::V1::RecievesController < ApplicationController
-  before_action :set_recieve, only: [:add]
   def add
     recieve = Recieve.new(recieve_params)
     if recieve.save
