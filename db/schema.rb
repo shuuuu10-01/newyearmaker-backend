@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_25_124404) do
+ActiveRecord::Schema.define(version: 2020_12_31_024825) do
 
   create_table "cards", force: :cascade do |t|
     t.string "uid"
@@ -22,6 +22,14 @@ ActiveRecord::Schema.define(version: 2020_12_25_124404) do
     t.string "public_uid"
     t.string "display_name"
     t.index ["public_uid"], name: "index_cards_on_public_uid", unique: true
+  end
+
+  create_table "recieves", force: :cascade do |t|
+    t.string "uid"
+    t.string "display_name"
+    t.string "public_uid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
 end
