@@ -12,8 +12,8 @@ Rails.application.routes.draw do
       post "cards/:id/update" => "cards#update"
       post "cards/:id/destroy" => "cards#destroy"
 
-      get "recieve/:id/where" => "recieves#where"
       post "recieve/add" => "recieves#add"
+      get "recieve/:id/where" => "recieves#where"
 
       get "twitter/:source_id/:target_id/friendships" => "twitter_api#follow"
       get "twitter/:source_id/:target_screen_name/check" => "twitter_api#check"
