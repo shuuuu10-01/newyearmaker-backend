@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       get "cards/:id/show" => "cards#show"
       get "cards/:id/edit" => "cards#edit"
 
+      get "cards/:id/where" => "cards#where"
+
       post "cards/:id/update" => "cards#update"
       post "cards/:id/destroy" => "cards#destroy"
 

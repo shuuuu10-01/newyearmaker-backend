@@ -24,6 +24,11 @@ class Api::V1::CardsController < ApplicationController
     end
   end
 
+  def where
+    cards = Card.where(uid: params[:id])
+    render json: { status: 'SUCCESS', message: 'Loaded posts', data: cards }
+  end
+
   def destroy
     @card.destroy
     render json: { status: 'SUCCESS', message: 'Deleted the post', data: @card }
