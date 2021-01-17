@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_31_063246) do
+ActiveRecord::Schema.define(version: 2021_01_17_164420) do
 
   create_table "cards", force: :cascade do |t|
     t.string "uid"
@@ -22,6 +22,11 @@ ActiveRecord::Schema.define(version: 2020_12_31_063246) do
     t.string "public_uid"
     t.string "display_name"
     t.string "DM_id"
+    t.float "top"
+    t.float "left"
+    t.float "width"
+    t.float "height"
+    t.boolean "select"
     t.index ["public_uid"], name: "index_cards_on_public_uid", unique: true
   end
 

@@ -47,7 +47,7 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def card_params #ここでPOSTされる中身を選択
-    params.require(:card).permit(:uid,:text,:gif,:share,:display_name,:DM_id)
+    params.require(:card).permit(:uid,:text,:gif,:share,:display_name,:DM_id,:top,:left,:width,:height,:select)
   end
 
   def error500(error)
