@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
   namespace 'api' do
     namespace 'v1' do
-      get "cards/index" => "cards#index"
       post "cards/create" => "cards#create"
 
       get "cards/:id/show" => "cards#show"
-      get "cards/:id/edit" => "cards#edit"
 
       get "cards/:id/where" => "cards#where"
 
