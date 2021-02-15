@@ -6,10 +6,10 @@ class ApplicationController < ActionController::API
 
   private
   def authenticate
-    if request.headers[:TOKEN]===TOKEN
+    if request.headers[:token]===TOKEN
 
     else
-      render json: {errors: [{code: 'E9999',message: 'token error'}]}
+      render json: {errors: [{code: 'Error code 89',message: 'Invalid or Expired Token'}]}
     end
   end
 end

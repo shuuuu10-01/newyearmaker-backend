@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       get "cards/:id/where" => "cards#where"
 
       post "cards/:id/update" => "cards#update"
-      post "cards/:id/destroy" => "cards#destroy"
+      post "cards/:id/:uid/destroy" => "cards#destroy"
 
       post "recieve/add" => "recieves#add"
       get "recieve/:id/where" => "recieves#where"

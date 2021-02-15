@@ -21,16 +21,25 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def destroy
-    @card.destroy
-    render json: { status: 'SUCCESS', message: 'Deleted the post', data: @card }
+    if params[:uid]==@card.uid
+      @card.destroy
+      render json: { status: 'SUCCESS', message: 'Deleted the post', data: @card }
+    else
+      render json: {errors: [{code: '403',message: 'Forbidden'}]}
+    end
   end
 
   def update
+    card= Card.new(card_params)
+    if card.uid==@card.uid
       if @card.update(card_params)
-        render json: { status: 'SUCCESS', message: 'Updated the post', data: @card }
+      render json: { status: 'SUCCESS', message: 'Updated the post', data: @card }
       else
         render json: { status: 'SUCCESS', message: 'Not updated', data: @card.errors }
       end
+    else
+      render json: {errors: [{code: '403',message: 'Forbidden'}]}
+    end
   end
   private
   def set_card
