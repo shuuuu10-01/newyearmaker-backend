@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_17_164420) do
+ActiveRecord::Schema.define(version: 2021_02_19_040514) do
 
   create_table "cards", force: :cascade do |t|
     t.string "uid"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 2021_01_17_164420) do
     t.string "uid"
     t.string "display_name"
     t.string "public_uid"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "uid"
+    t.string "idToken"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
