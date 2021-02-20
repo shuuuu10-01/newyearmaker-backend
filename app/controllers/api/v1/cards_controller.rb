@@ -22,7 +22,7 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def destroy
-    if params[:uid]==@card.uid
+    if params[:uid]==@uid
       @card.destroy
       render json: { status: 'SUCCESS', message: 'Deleted the post', data: @card }
     else
@@ -32,7 +32,7 @@ class Api::V1::CardsController < ApplicationController
 
   def update
     card= Card.new(card_params)
-    if card.uid==@uid[0]
+    if card.uid==@uid
       if @card.update(card_params)
       render json: { status: 'SUCCESS', message: 'Updated the post', data: @card }
       else
@@ -42,6 +42,12 @@ class Api::V1::CardsController < ApplicationController
       render json: {errors: [{code: '403',message: 'Forbidden'}]}
     end
   end
+
+  def check
+    access_token = extract_access_token_from_header
+    render json: { status: 'SUCCESS', message: 'Updated the post', data: access_token }
+  end
+
   private
   def set_card
     @card = Card.find_by(public_uid: params[:id])
@@ -49,7 +55,12 @@ class Api::V1::CardsController < ApplicationController
 
   def authenticate
     access_token = extract_access_token_from_header
-    @uid = access_token[0]['firebase']['identities']['twitter.com']
+    #idTokenが正しいか識別
+    if access_token[0]['aud']==ENV.fetch("FIREBASE_PROJECT_ID")
+      @uid = access_token[0]['firebase']['identities']['twitter.com'][0]
+    else
+      render json: {errors: [{code: '403',message: 'Forbidden'}]}
+    end
   end
 
   def extract_access_token_from_header
