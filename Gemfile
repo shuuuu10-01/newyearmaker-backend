@@ -52,3 +52,6 @@ gem 'httpclient'
 
 #idをランダムな文字列にする
 gem 'public_uid'
+
+#firebaseのidToken検証のため
+gem 'firebase-auth-id_token_keeper'
