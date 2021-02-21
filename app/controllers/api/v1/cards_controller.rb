@@ -1,10 +1,10 @@
 class Api::V1::CardsController < ApplicationController
   before_action :set_card, only: [:show,:update,:destroy]
-  before_action :authenticate, only: [:update,:destroy]
+  before_action :authenticate, only: [:update,:destroy,:where]
   rescue_from StandardError,with: :error500 
 
   def show
-    render json: { status: 'SUCCESS', message: 'Loaded the post', data: @card }
+        render json: { status: 'SUCCESS', message: 'Loaded the post', data: @card }
   end
 
   def create
@@ -17,8 +17,12 @@ class Api::V1::CardsController < ApplicationController
   end
 
   def where
-    cards = Card.where(uid: params[:id])
-    render json: { status: 'SUCCESS', message: 'Loaded posts', data: cards }
+    if params[:id]==@uid
+      cards = Card.where(uid: params[:id])
+      render json: { status: 'SUCCESS', message: 'Loaded posts', data: cards }
+    else
+      render json: { status: 'ERROR', message: '不正なアクセスです' }
+    end
   end
 
   def destroy
